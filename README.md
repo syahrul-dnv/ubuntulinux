@@ -1,4 +1,4 @@
-<img src="https://image.ibb.co/g0SdPw/Screenshot_from_2018_01_05_11_14_40.png" alt="Girl in a jacket" width="500" height="600">
+<img src="https://github.com/syahrulrzkii/ubuntulinux/blob/main/EslDGWH-wallpaper-for-linux-ubuntu.jpg" alt="Ubuntu LInux" width="100%" height="500">
 
 
 # Linux Ubuntu
