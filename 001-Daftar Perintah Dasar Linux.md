@@ -182,4 +182,5 @@ Anda masih bingung dengan beberapa perintah/commands dan ingin mempelajari fungs
 
 Tak usah khawatir! Linux juga menyediakan man command—sebuah perintah yang akan menampilkan halaman manual berisi instruksi atau deskripsi mengenai command tertentu.
 
-Caranya, cukup tulis perintah man diikuti dengan nama command yang ingin Anda ketahui (contoh: man rmdir).  
+Caranya, cukup tulis perintah man diikuti dengan nama command yang ingin Anda ketahui (contoh: man rmdir).
+<pre>man rmdir</pre
