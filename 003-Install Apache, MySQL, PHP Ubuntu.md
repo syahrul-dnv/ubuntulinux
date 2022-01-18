@@ -149,7 +149,259 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
     with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies</pre>
 Di titik ini, tumpukan LAMP Anda sudah berfungsi sepenuhnya, tetapi sebelum Anda dapat menguji setelan Anda dengan skrip PHP, sebaiknya instal Apache Virtual Host yang tepat untuk menyimpan berkas dan folder situs web Anda. Kita akan melakukan itu di langkah selanjutnya.
 
+# Langkah 4 — Menciptakan Hos Virtual untuk Situs Web Anda
+Ketika menggunakan server web Apache, Anda bisa menciptakan hos virtual (serupa dengan blok server di Nginx) untuk merangkum detail konfigurasi dan menjadi hos dari lebih dari satu domain dari server tunggal. Dalam panduan ini, kita akan menyiapkan domain bernama your_domain, tetapi Anda harus menggantinya dengan nama domain Anda sendiri.
 
+Catatan: Jika Anda menggunakan DigitalOcean sebagai penyedia hos DNS, lihat dokumen produk kami untuk instruksi mendetail tentang cara mempersiapkan nama domain baru dan mengarahkannya ke server Anda.
+
+Apache pada Ubuntu 20.04 memiliki satu blok server yang aktif secara asali, yang dikonfigurasi untuk menyajikan dokumen-dokumen dari direktori /var/www/html. Meskipun ini berfungsi baik untuk situs tunggal, ini bisa menjadi sulit dijalankan jika Anda menjadi hos dari beberapa situs. Alih-alih memodifikasi /var/www/html, kita akan menciptakan suatu struktur direktori dalam /var/www untuk situs your_domain, dengan membiarkan /var/www/html sebagai direktori asali yang akan ditampilkan jika permintaan klien tidak cocok dengan situs lain.
+
+Buat direktori untuk your_domain sebagai berikut:
+
+<pre> sudo mkdir /var/www/your_domain</pre>
+ 
+Selanjutnya, tentukan kepemilikan direktori dengan variabel lingkungan $USER, yang akan merujuk pada pengguna sistem Anda saat ini:
+
+<pre> sudo chown -R $USER:$USER /var/www/your_domain</pre>
+ 
+Kemudian, buka berkas konfigurasi baru dalam direktori sites-available Apache dengan menggunakan editor baris perintah yang Anda sukai. Di sini, kita akan menggunakan nano:
+
+<pre>sudo nano /etc/apache2/sites-available/your_domain.conf</pre>
+ 
+Ini akan menciptakan berkas kosong yang baru. Tempelkan konfigurasi dasar berikut:
+<pre>
+/etc/apache2/sites-available/your_domain.conf
+<VirtualHost *:80>
+    ServerName your_domain
+    ServerAlias www.your_domain
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/your_domain
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+</pre> 
+Simpan dan tutup berkas setelah Anda selesai. Jika Anda menggunakan nano, Anda dapat melakukannya dengan menekan CTRL+X, kemudian Y dan ENTER.
+
+Dengan konfigurasi VirtualHost ini, kita menyuruh Apache untuk menyajikan your_domain menggunakan /var/www/your_domain sebagai direktori root web. Jika Anda ingin menguji Apache tanpa nama domain, Anda dapat menghapus atau memberikan komentar pada opsi ServerName dan ServerAlias dengan menambahkan karakter # di depan masing-masing baris opsi.
+
+Anda dapat menggunakan a2ensite untuk mengaktifkan hos virtual yang baru:
+
+<pre>sudo a2ensite your_domain</pre>
+ 
+Anda mungkin ingin menonaktifkan situs web asali yang terinstal dengan Apache. Ini diperlukan jika Anda tidak menggunakan nama domain khusus, karena dalam hal ini, konfigurasi asali Apache akan menimpa hos virtual Anda. Untuk menonaktifkan situs web asali Apache, ketikkan:
+
+<pre>sudo a2dissite 000-default</pre>
+ 
+Untuk memastikan berkas konfigurasi Anda tidak berisi kesalahan sintaks, jalankan:
+
+<pre>sudo apache2ctl configtest</pre>
+ 
+Terakhir, muat ulang Apache agar perubahan ini diterapkan:
+
+<pre>sudo systemctl reload apache2</pre>
+ 
+Situs web Anda yang baru kini sudah aktif, tetapi root web /var/www/your_domain masih kosong. Buat berkas index.html di dalam lokasi itu sehingga kita dapat menguji apakah hos virtual bekerja sesuai harapan:
+
+<pre>nano /var/www/your_domain/index.html</pre>
+ 
+Sertakan konten berikut di dalam berkas ini:
+<pre>
+/var/www/your_domain/index.html
+<html>
+  <head>
+    <title>your_domain website</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+
+    <p>This is the landing page of <strong>your_domain</strong>.</p>
+  </body>
+</html>
+</pre> 
+Sekarang, buka peramban Anda dan akses nama domain server atau alamat IP Anda sekali lagi:
+
+http://server_domain_or_IP
+Anda akan melihat sebuah laman seperti ini: 
+<img src="https://assets.digitalocean.com/articles/lemp_ubuntu2004/landing_page.png">
+
+Jika Anda melihat laman ini, ini berarti hos virtual Apache Anda bekerja sesuai harapan.
+
+Anda dapat meninggalkan berkas ini di lokasinya saat ini sebagai laman landas sementara untuk aplikasi Anda sampai Anda menyiapkan berkas index.php untuk menggantinya. Setelah Anda melakukannya, ingat untuk menghapus atau mengganti nama berkas index.html dari root dokumen Anda, karena berkas ini lebih diutamakan daripada berkas index.php secara asali.
+
+Catatan Tentang DirectoryIndex pada Apache
+Dengan pengaturan DirectoryIndex asali pada Apache, berkas yang diberi nama index.html akan selalu lebih diutamakan daripada berkas index.php. Ini berguna untuk menyiapkan laman pemeliharaan di aplikasi PHP, dengan menciptakan berkas index.html sementara yang mengandung suatu pesan informatif bagi pengunjung. Karena lebih diutamakan daripada laman index.php, laman ini akan menjadi laman landas untuk aplikasi. Setelah pemeliharaan selesai, index.html diubah namanya atau dihapus dari root dokumen, sehingga mengembalikan laman aplikasi reguler.
+
+Jika Anda ingin mengubah perilaku ini, Anda akan perlu mengedit berkas /etc/apache2/mods-enabled/dir.conf dan memodifikasi urutan di mana berkas index.php terdaftar di dalam arahan DirectoryIndex:
+
+<pre>sudo nano /etc/apache2/mods-enabled/dir.conf</pre>
+<pre> 
+/etc/apache2/mods-enabled/dir.conf
+<IfModule mod_dir.c>
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+</pre> 
+Setelah menyimpan dan menutup berkas, Anda perlu memuat ulang Apache agar perubahan tersebut diterapkan:
+
+<pre>sudo systemctl reload apache2</pre>
+ 
+Dalam langkah berikutnya, kita akan menciptakan skrip PHP untuk menguji apakah PHP telah terinstal dan terkonfigurasi dengan benar di server Anda.
+
+# Langkah 5 — Menguji Pemrosesan PHP pada Server Web
+Kini setelah Anda memiliki lokasi khusus untuk menjadi hos dari berkas dan folder situs web Anda, kita akan menciptakan skrip percobaan PHP untuk mengonfirmasi bahwa Apache dapat menangani dan memproses permintaan untuk berkas PHP.
+
+Buat berkas baru bernama info.php di dalam folder root web khusus Anda:
+
+<pre> nano /var/www/your_domain/info.php 
+/var/www/your_domain/info.php
+</pre>
+ 
+Ini akan membuka suatu berkas kosong. Tambahkan teks berikut, yang merupakan kode PHP yang valid, di dalam berkas:
+<pre>
+/var/www/your_domain/info.php
+?php
+phpinfo();
+</pre>
+Setelah Anda selesai, simpan dan tutup berkas.
+
+Untuk menguji skrip ini, buka peramban web Anda dan akses alamat IP atau nama domain server Anda, diikuti dengan nama skrip, yang dalam hal ini adalah info.php:
+
+http://server_domain_or_IP/info.php
+Anda akan melihat halaman yang serupa dengan ini:
+<img src="https://assets.digitalocean.com/articles/lamp_ubuntu2004/phpinfo.png">
+
+Laman ini menyajikan informasi tentang server Anda dari sudut pandang PHP. Ini berguna untuk mengawakutu dan memastikan pengaturan Anda telah diterapkan dengan benar.
+
+Jika Anda dapat melihat laman ini di peramban Abda, maka instalasi PHP Anda bekerja sesuai harapan.
+
+Setelah memeriksa informasi yang relevan mengenai server PHP Anda melalui laman itu, sebaiknya hapus berkas yang Anda buat, karena berkas tersebut mengandung informasi sensitif tentang lingkungan PHP A dan server Ubuntu Anda. Anda dapat menggunakan rm untuk melakukannya:
+
+<pre> sudo rm /var/www/your_domain/info.php </pre>
+ 
+Anda selalu dapat menciptakan kembali laman ini jika Anda perlu mengakses kembali informasi tersebut sewaktu-waktu
+
+ 
+# Langkah 6 — Menguji Koneksi Basis Data dari PHP
+Jika Anda ingin menguji apakah PHP dapat terhubung ke MySQL dan menjalankan kueri basis data, Anda dapat menciptakan tabel percobaan dengan kueri dan data semu sebagai kontennya dari skrip PHP. Sebelum melakukan itu, kita perlu menciptakan basis data percobaan dan pengguna MySQL baru yang dikonfigurasi dengan benar untuk mengaksesnya.
+
+Saat menyusun tulisan ini, pustaka PHP MySQL asli mysqlndtidak mendukung caching_sha2_authentication, metode autentikasi asali untuk MySQL 8. Kita akan perlu menciptakan pengguna baru dengan metode autentikasi mysql_native_password agar dapat terhubung ke basis data MySQL dari PHP.
+
+Kita akan menciptakan basis data bernama example_database dan pengguna bernama example_user, tetapi Anda dapat mengganti nama-nama ini dengan nilai yang berbeda.
+
+Pertama, hubungkan ke konsol MySQL menggunakan akun root:
+
+<pre> sudo mysql</pre>
+ 
+Untuk menciptakan basis data baru, jalankan perintah berikut dari konsol MySQL:
+
+<pre>CREATE DATABASE example_database;</pre>
+ 
+Sekarang Anda dapat menciptakan pengguna baru dan memberikan mereka privilese penuh pada basis data khusus yang baru saja Anda ciptakan.
+
+Perintah berikut menciptakan pengguna baru bernama example_user, yang menggunakan mysql_native_password sebagai metode autentikasi asali. Kita mendefinisikan kata sandi pengguna ini sebagai password, tetapi Anda harus mengganti nilai ini dengan kata sandi pilihan Anda yang aman.
+
+<pre>CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';</pre>
+ 
+Sekarang, kita perlu memberikan izin terhadap basis data example_database kepada pengguna ini:
+
+<pre>GRANT ALL ON example_database.* TO 'example_user'@'%';</pre>
+ 
+Ini akan memberikan pengguna example_user privilese penuh terhadap basis data example_database database, yang juga mencegah pengguna ini untuk tidak membuat atau memodifikasi basis data lainnya di server Anda.
+
+Sekarang, keluar dari shell MySQL dengan:
+
+<pre>exit</pre>
+ 
+Anda dapat menguji apakah pengguna baru memiliki izin yang tepat dengan melakukan log masuk ke konsol MySQL lagi, kali ini dengan menggunakan kredensial pengguna khusus:
+
+<pre>mysql -u example_user -p</pre>
+ 
+Perhatikan tanda -p dalam perintah ini, yang akan meminta Anda kata sandi yang digunakan saat menciptakan pengguna example_user. Setelah log masuk ke konsol MySQL, pastikan Anda memiliki akses ke basis data example_database:
+
+<pre>SHOW DATABASES;</pre>
+ 
+Ini akan menampilkan keluaran berikut:
+<pre>
+Output :
++--------------------+
+| Database           |
++--------------------+
+| example_database   |
+| information_schema |
++--------------------+
+2 rows in set (0.000 sec)</pre>
+Selanjutnya, kita akan menciptakan tabel percobaan bernama todo_list. Dari konsol MySQL, jalankan pernyataan berikut:
+<pre>
+CREATE TABLE example_database.todo_list (
+    item_id INT AUTO_INCREMENT,
+    content VARCHAR(255),
+    PRIMARY KEY(item_id)
+);
+ </pre>
+Masukkan beberapa baris konten ke dalam tabel percobaan. Anda mungkin ingin mengulangi perintah selanjutnya beberapa kali lagi, dengan menggunakan nilai yang berbeda:
+<pre>
+INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
+ </pre>
+Untuk memastikan data berhasil tersimpan di tabel, jalankan:
+<pre>
+SELECT * FROM example_database.todo_list;
+ </pre>
+Anda akan melihat keluaran berikut:
+<pre>
+Output
++---------+--------------------------+
+| item_id | content                  |
++---------+--------------------------+
+|       1 | My first important item  |
+|       2 | My second important item |
+|       3 | My third important item  |
+|       4 | and this one more thing  |
++---------+--------------------------+
+4 rows in set (0.000 sec)
+</pre>
+Setelah memastikan Anda memiliki data yang valid dalam tabel percobaan, Anda dapat keluar dari konsol MySQL:
+
+<pre>exit</pre>
+ 
+Sekarang Anda dapat menciptakan skrip PHP yang akan terhubung ke MySQL dan melakukan kueri untuk konten Anda. Buat berkas PHP baru pada direktori root web khusus Anda menggunakan editor pilihan Anda. Kita akan menggunakan nano untuk itu:
+
+<pre>nano /var/www/your_domain/todo_list.php</pre>
+ 
+Skrip PHP berikut terhubung ke basis data MySQL dan melakukan kueri untuk konten tabel todo_list, yang menampilkan hasilnya dalam sebuah daftar. Jika ada masalah dengan koneksi basis data, akan dilakukan pengecualian. Salin konten ini ke skrip todo_list.php:
+<pre>
+/var/www/your_domain/todo_list.php
+<?php
+$user = "example_user";
+$password = "password";
+$database = "example_database";
+$table = "todo_list";
+
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>";
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+</pre> 
+Simpan dan tutup berkas setelah Anda selesai mengedit.
+
+Anda dapat mengakses laman ini di peramban web Anda dengan mengunjungi nama domain atau alamat IP publik yang dikonfigurasi untuk situs web Anda, diikuti dengan /todo_list.php:
+
+http://your_domain_or_IP/todo_list.php
+Anda akan melihat laman seperti ini, yang menunjukkan konten yang telah Anda masukkan ke dalam tabel percobaan Anda:
+<img src="https://assets.digitalocean.com/articles/lemp_debian10/todo_list.png">
+Contoh todo list PHP
+
+Ini berarti lingkungan PHP Anda telah siap terhubung dan berinteraksi dengan server MySQL.
+
+Kesimpulan
+Dalam panduan ini, kita telah membangun fondasi yang fleksibel untuk menyajikan aplikasi dan situs web PHP kepada pengunjung Anda, dengan menggunakan Apache sebagai server web dan MySQL sebagai sistem basis data.
+
+Sebagai langkah berikutnya, Anda harus memastikan bahwa koneksi ke server web Anda sudah aman, dengan melayaninya melalui HTTPS. Untuk melakukannya, Anda dapat menggunakan Let’s Encrypt untuk mengamankan situs Anda dengan sertifikat TLS/SSL gratis.
 
 
 
