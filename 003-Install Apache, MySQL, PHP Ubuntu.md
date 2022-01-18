@@ -405,22 +405,6 @@ Sebagai langkah berikutnya, Anda harus memastikan bahwa koneksi ke server web An
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Layanan pengaktifan / penonaktifan sementara
 
 Untuk menghentikan dan memulai layanan sementara (Tidak mengaktifkan / menonaktifkannya untuk booting di masa mendatang), Anda dapat mengetik service SERVICE_NAME. Sebagai contoh:
@@ -434,3 +418,60 @@ Untuk menghentikan dan memulai layanan sementara (Tidak mengaktifkan / menonakti
 <pre>sudo service apache2 restart</pre>(Akan MEMULAI layanan. Ini paling umum digunakan ketika Anda telah mengubah, file konfigurasi. Dalam hal ini, jika Anda mengubah konfigurasi PHP atau konfigurasi Apache. Restart akan menyelamatkan Anda dari keharusan berhenti / mulai dengan 2 baris perintah) )
 
 <pre>service apache2</pre>(Dalam hal ini, karena Anda tidak menyebutkan TINDAKAN untuk mengeksekusi untuk layanan, itu akan menunjukkan kepada Anda semua opsi yang tersedia untuk layanan tertentu.) Aspek ini bervariasi tergantung pada layanan, misalnya, dengan MySQL hanya akan menyebutkan bahwa itu tidak memiliki parameter. Untuk layanan lain seperti layanan jaringan, akan disebutkan daftar kecil dari semua opsi yang tersedia.
+
+
+## SYSTEMD
+Dimulai dengan Ubuntu 15,04, Pemula akan ditinggalkan karena Systemd. Dengan Systemd untuk mengelola layanan, kami dapat melakukan hal berikut:
+
+<li>`systemctl start SERVICE`- Gunakan untuk memulai layanan. Tidak bertahan setelah reboot</li>
+
+<li>systemctl stop SERVICE- Gunakan untuk menghentikan layanan. Tidak bertahan setelah reboot</li>
+
+<li>systemctl restart SERVICE - Gunakan untuk memulai kembali layanan</li>
+
+<li>systemctl reload SERVICE - Jika layanan mendukungnya, itu akan memuat ulang file konfigurasi yang terkait dengannya tanpa mengganggu proses apa pun yang menggunakan layanan ini.</li>
+
+<li>systemctl status SERVICE- Menunjukkan status layanan. Memberitahu apakah suatu layanan sedang berjalan.</li>
+
+<li>systemctl enable SERVICE- Menyalakan layanan, pada reboot berikutnya atau pada acara mulai berikutnya. Ini berlanjut setelah reboot.</li>
+
+<li>systemctl disable SERVICE- Menonaktifkan layanan pada boot ulang berikutnya atau pada perhentian berikutnya. Ini berlanjut setelah reboot.</li>
+
+<li>systemctl is-enabled SERVICE - Periksa apakah suatu layanan saat ini dikonfigurasi untuk memulai atau tidak pada reboot berikutnya.</li>
+
+<li>systemctl is-active SERVICE - Periksa apakah suatu layanan saat ini aktif.</li>
+
+<li>systemctl show SERVICE - Tampilkan semua informasi tentang layanan ini.</li>
+
+<li>sudo systemctl mask SERVICE- Menonaktifkan sepenuhnya layanan dengan menautkannya ke /dev/null; Anda tidak dapat memulai layanan secara manual atau mengaktifkan layanan.</li>
+
+<li>sudo systemctl unmask SERVICE- Menghapus tautan ke /dev/nulldan mengembalikan kemampuan untuk mengaktifkan dan atau memulai layanan secara manual.</li>
+
+<li>UPSTART (Tidak Digunakan Sejak 15.04)</li>
+Jika kami ingin menggunakan cara Pemula resmi (Perhatikan bahwa, untuk saat ini, tidak semua layanan telah dikonversi ke Pemula), kami dapat menggunakan perintah berikut:</li>
+
+<li>status SERVICE- Ini akan memberi tahu kami jika layanan yang dikonversi sedang berjalan atau tidak. Perhatikan bahwa ini usang dalam mendukung `start, stop, status& restart.` Ini juga akan memberi tahu kami jika layanan belum dikonversi ke pemula:</li>
+
+Layanan yang dikonversi biasanya akan mengeluarkan status saat ini (Memulai, Menjalankan, Menghentikan ...) dan memproses ID. Layanan yang tidak dikonversi akan memberikan kesalahan tentang pekerjaan yang tidak dikenal .
+
+Beberapa pintasan hanya dapat bekerja dengan serviceperintah di atas tetapi tidak dengan perintah di bawah kecuali jika 100% dikonversi ke layanan pemula:
+
+<li>MULAI -sudo start mysql</li>
+
+<li>BERHENTI -sudo stop mysql</li>
+
+<li>Restart -sudo restart mysql</li>
+
+<li>STATUS -sudo status smbd</li>
+
+## Mengaktifkan / Menonaktifkan layanan
+Untuk mengganti layanan dari memulai atau berhenti secara permanen, Anda perlu:
+
+<pre>echo manual | sudo tee /etc/init/SERVICE.override</pre>
+di mana bait manualakan menghentikan Pemula dari memuat layanan secara otomatis pada boot berikutnya. Setiap layanan dengan .overrideakhiran akan diutamakan daripada file layanan asli. Anda hanya akan dapat memulai layanan secara manual setelahnya. Jika Anda tidak ingin ini maka cukup hapus .override. Sebagai contoh:
+
+<pre>echo manual | sudo tee /etc/init/mysql.override</pre>
+Akan menempatkan layanan MySQL ke manualmode. Jika Anda tidak menginginkan ini, maka Anda bisa melakukannya
+
+<pre>sudo rm /etc/init/mysql.override</pre>
+dan Reboot untuk memulai layanan lagi secara otomatis. Tentu saja untuk mengaktifkan layanan, cara yang paling umum adalah dengan menginstalnya. Jika Anda menginstal Apache, Nginx, MySQL atau yang lain, mereka secara otomatis mulai setelah menyelesaikan instalasi dan akan mulai setiap kali komputer melakukan boot. Penonaktifan, seperti yang disebutkan di atas, akan menggunakan layanan ini manual.
