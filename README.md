@@ -1,5 +1,5 @@
-<img src="https://github.com/syahrulrzkii/ubuntulinux/blob/main/EslDGWH-wallpaper-for-linux-ubuntu.jpg" alt="Ubuntu LInux" width="100%" height="500">
 
+<img src="https://drive.google.com/uc?export=view&id=1RJxqmGZvy8YTqtchb0wS2UoKkK7t6NmX"/>
 
 # Linux Ubuntu
 Pernah mendengar sebuah sistem operasi bernama Linux Ubuntu? Linux Ubuntu adalah sistem operasi open source yang pertama kali dirilis pada tanggal 20 Oktober 2004. Sistem operasi ini berjalan di atas basis kode Debian Linux. Lantas, mengapa dinamakan Ubuntu?
