@@ -13,7 +13,7 @@ Container adalah abstraksi pada lapisan aplikasi yang mengemas kode dan dependen
 
 Sementara virtual machine adalah abstraksi dari perangkat keras yang memungkinkan satu server fisik menjadi banyak server virtual. Hypervisor memungkinkan beberapa virtual machine berjalan pada satu mesin. Setiap virtual machine menyertakan salinan lengkap sistem operasi, aplikasi, binari, dan pustaka yang diperlukan, menghabiskan ruang sampai puluhan GB. Virtual machine juga bisa lambat pada proses boot.
 
-<p align="center"> <img src="https://drive.google.com/uc?export=view&id=1inSLG8n_FubP1YW6B1-M_Pkhi4ABy-aM"></p>
+<p align="center"> <img src="https://drive.google.com/uc?export=view&id=192ZITPvcouBqIet7lOm8SDnP5KQt3-lK"></p>
 
 ## Docker Platform
 Docker menyediakan kemampuan untuk mengemas dan menjalankan aplikasi di lingkungan yang terisolasi yang disebut container. Isolasi dan keamanannya memungkinkan kita untuk menjalankan container secara bersamaan. Container yang ringan dan berisi semua yang diperlukan untuk menjalankan aplikasi, jadi tidak bergantung pada pustaka yang ada di host OS.
