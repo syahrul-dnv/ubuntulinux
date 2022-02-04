@@ -23,3 +23,13 @@ Docker menyediakan alat dan platform untuk mengelola siklus hidup container.
 Mengembangkan aplikasi dan kompenen pendukungnya menggunakan container.
 Container menjadi unit untuk mendistribusikan dan menguji aplikasi.
 Terapkan aplikasi ke lingkungan produksi sebagai container. Container berfungsi sama, baik itu di lingkungan lokal, lingkungan produksi, atau di cloud.
+
+## Kapan Menggunakan Docker?
+Docker merampingkan siklus hidup pengembangan dengan memungkinkan kita untuk bekerja di lingkungan standar menggunakan container lokal yang menyediakan aplikasi dan layanan. Container sangat bagus untuk alur kerja continuous integration dan continuous delivery (CI/CD).
+
+Contoh skenario penggunaan Docker:
+
+Developer mengembangkan aplikasi secara lokal dan membagikan hasil pekerjaannya menggunakan Docker.
+Developer menggunakan Docker untuk mengirimnya ke lingkungan pengujian dan menjalankan pengujian baik secara otomatis.
+Ketika developer menemukan bug, developer dapat memperbaikinya di lingkungan pengembangan dan mengirimnya kembali ke lingkungan pengujian untuk pengujian dan validasi.
+Saat pengujian selesai, mengirimkan Docker image ke lingkungan produksi.
