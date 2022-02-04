@@ -46,4 +46,18 @@ Docker daemon (dockerd) menerima permintaan Docker API dan mengelola Docker obje
 ## Docker client
 Docker client (docker) adalah cara untuk berinteraksi dengan Docker. Saat menggunakan perintah seperti ‘docker run’, client mengirimkan perintah ini ke dockerd dan menjalankannya. Perintah docker menggunakan Docker API. Docker client dapat berkomunikasi dengan lebih dari satu daemon.
 
+## Docker registries
+Docker registry menyimpan Docker images. Docker Hub adalah public registry yang dapat digunakan oleh siapa saja dan Docker secara default mencari images di Docker Hub.
 
+## Docker objects
+Docker objects antara lain images, container, network, volume dan plugin.
+
+## Images
+Images adalah read-only template dengan instruksi untuk membuat Docker container. Seringkali sebuah image didasarkan pada image lain dengan beberapa penyesuaian tambahan. Misalnya, kita dapat membuat image yang didasarkan pada ubuntu image, tetapi menambahkan Apache web server dan aplikas kita, serta detail konfigurasi yang diperlukan untuk membuat aplikasi berjalan.
+
+Kita dapat membuat image sendiri atau mungkin hanya menggunakan image yang dibuat oleh orang lain dan dipublikasikan di registry. Untuk membangun image sendiri, kita membuat Dockerfile untuk menentukan langkah-langkah yang diperlukan untuk membuat image dan menjalankannya.
+
+## Containers
+Container adalah instance dari image yang dapat dijalankan. Kita dapat membuat, menjalankan, menghentikan, memindahkan, atau menghapus container menggunakan Docker API atau CLI. Kita dapat menghubungkan container ke satu atau beberapa network, menambahkan storage ke dalamnya, atau bahkan membuat image baru berdasarkan isi dan status container saat ini.
+
+Panduan lengkap mengenai Docker baca di docs.docker.com.
