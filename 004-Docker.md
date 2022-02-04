@@ -37,7 +37,7 @@ Saat pengujian selesai, mengirimkan Docker image ke lingkungan produksi.
 ## Arsitektur Docker
 Docker menggunakan arsitektur client-server. Docker client berkomunikasi dengan Docker daemon yang bertugas membangun, menjalankan, dan mendistribusikan Docker container. Docker client dan daemon dapat berjalan pada sistem yang sama, atau dapat menghubungkan Docker client ke Docker daemon secara remote. Docker client dan daemon berkomunikasi menggunakan REST API, melalui Unix socket atau antarmuka jaringan. Docker client lainnya adalah Docker compose yang memungkinkan bekerja dengan aplikasi yang terdiri dari sekumpulan container.
 
-<p align="center"> <img src="https://drive.google.com/uc?export=view&id=1inSLG8n_FubP1YW6B1-M_Pkhi4ABy-aM"></p>
+<p align="center"> <img src="https://drive.google.com/uc?export=view&id=1g-IAYa-YYd-zFky-jTlmV0zbDNKUbSmq"></p>
 
 
 ## Docker daemon
