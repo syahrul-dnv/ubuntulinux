@@ -33,3 +33,8 @@ Developer mengembangkan aplikasi secara lokal dan membagikan hasil pekerjaannya 
 Developer menggunakan Docker untuk mengirimnya ke lingkungan pengujian dan menjalankan pengujian baik secara otomatis.
 Ketika developer menemukan bug, developer dapat memperbaikinya di lingkungan pengembangan dan mengirimnya kembali ke lingkungan pengujian untuk pengujian dan validasi.
 Saat pengujian selesai, mengirimkan Docker image ke lingkungan produksi.
+
+## Arsitektur Docker
+Docker menggunakan arsitektur client-server. Docker client berkomunikasi dengan Docker daemon yang bertugas membangun, menjalankan, dan mendistribusikan Docker container. Docker client dan daemon dapat berjalan pada sistem yang sama, atau dapat menghubungkan Docker client ke Docker daemon secara remote. Docker client dan daemon berkomunikasi menggunakan REST API, melalui Unix socket atau antarmuka jaringan. Docker client lainnya adalah Docker compose yang memungkinkan bekerja dengan aplikasi yang terdiri dari sekumpulan container.
+
+
