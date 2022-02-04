@@ -42,3 +42,8 @@ Docker menggunakan arsitektur client-server. Docker client berkomunikasi dengan 
 
 ## Docker daemon
 Docker daemon (dockerd) menerima permintaan Docker API dan mengelola Docker object seperti image, container, network, dan volume. Daemon juga dapat berkomunikasi dengan daemon lain untuk mengelola Docker service.
+
+## Docker client
+Docker client (docker) adalah cara untuk berinteraksi dengan Docker. Saat menggunakan perintah seperti ‘docker run’, client mengirimkan perintah ini ke dockerd dan menjalankannya. Perintah docker menggunakan Docker API. Docker client dapat berkomunikasi dengan lebih dari satu daemon.
+
+
