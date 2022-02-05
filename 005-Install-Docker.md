@@ -107,3 +107,7 @@ Menampilkan informasi detail image nginx.
 <pre>docker inspect nginx
 docker image inspect nginx
 </pre>
+
+### Jika ingin menghapus image.
+<pre>docker rmi nginx</pre>
+
