@@ -27,3 +27,9 @@ Logout dan login kembali.
 
 Uji coba menjalankan docker dan menampilkan versinya.
 <pre>docker version</pre>
+
+## Docker image
+Untuk membuat container kita membutuhkan image yang tersedia di hub.docker.com (Docker registry).
+
+Mencari image, misal nginx image.
+<pre>docker search nginx </pre>
