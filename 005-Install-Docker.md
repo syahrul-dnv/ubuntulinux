@@ -142,4 +142,14 @@ Menghapus container webserver, container harus dihentikan terlebih dahulu.
 <pre>docker stop webserver
 docker rm webserver </pre> 
 
+## Manual
+Menampilkan semua perintah docker.
+<pre>docker</pre>  
+
+Menampilkan help perintah, misal help untuk image.
+<pre>docker image --help</pre>  
+
+
+Dokumentasi di website docs.docker.com.
+
 
