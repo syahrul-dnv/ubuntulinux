@@ -27,9 +27,58 @@ Logout dan login kembali.
 
 Uji coba menjalankan docker dan menampilkan versinya.
 <pre>docker version</pre>
+nanti akan muncul keterangan dibawah ini
+<pre>Client: Docker Engine - Community
+ Version:           20.10.8
+ API version:       1.41
+ Go version:        go1.16.6
+ Git commit:        3967b7d
+ Built:             Fri Jul 30 19:54:27 2021
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
 
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.8
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.6
+  Git commit:       75249d8
+  Built:            Fri Jul 30 19:52:33 2021
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.4.9
+  GitCommit:        e25210fe30a0a703442421b0f60afac609f950a3
+ runc:
+  Version:          1.0.1
+  GitCommit:        v1.0.1-0-g4144b63
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0</pre>
+  
+  
 ## Docker image
 Untuk membuat container kita membutuhkan image yang tersedia di hub.docker.com (Docker registry).
 
-Mencari image, misal nginx image.
+Mencari image, misal nginx image. dan nanti akan muncul daftar image 
 <pre>docker search nginx </pre>
+<pre>NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+nginx                             Official build of Nginx.                        15317     [OK]       
+jwilder/nginx-proxy               Automated Nginx reverse proxy for docker con…   2059                 [OK]
+richarvey/nginx-php-fpm           Container running Nginx + PHP-FPM capable of…   815                  [OK]
+jc21/nginx-proxy-manager          Docker container for managing Nginx proxy ho…   233                  
+linuxserver/nginx                 An Nginx container, brought to you by LinuxS…   151         
+Download (pull) nginx image.</pre>
+
+sekarang kita download imagenya
+<pre>docker pull nginx </pre>
+contoh peritah di atas
+<pre>Using default tag: latest
+latest: Pulling from library/nginx
+33847f680f63: Downloading [============>                                      ]  6.695MB/27.15MB
+dbb907d5159d: Downloading [================>                                  ]  8.608MB/26.6MB
+8a268f30c42a: Download complete 
+b10cf527a02d: Download complete  </pre>
+
+
