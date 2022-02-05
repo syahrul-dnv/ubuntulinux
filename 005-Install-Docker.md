@@ -81,4 +81,18 @@ dbb907d5159d: Downloading [================>                                  ] 
 8a268f30c42a: Download complete 
 b10cf527a02d: Download complete  </pre>
 
+nginx image sudah tersedia.
+<pre>
+Using default tag: latest
+latest: Pulling from library/nginx
+33847f680f63: Pull complete 
+dbb907d5159d: Pull complete 
+8a268f30c42a: Pull complete 
+b10cf527a02d: Pull complete 
+c90b090c213b: Pull complete 
+1f41b2f2bf94: Pull complete 
+Digest: sha256:8f335768880da6baf72b70c701002b45f4932acae8d574dedfddaf967fc3ac90
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest  
+</pre>
 
