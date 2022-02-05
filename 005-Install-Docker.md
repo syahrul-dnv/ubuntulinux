@@ -5,3 +5,6 @@ Docker adalah platform container yang digunakan oleh developer dalam pengembanga
 Update package index dan install dependensi.
 <pre>sudo apt update
 sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release</pre>
+
+Downlod GPG key untuk Docker.
+<pre>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</pre>
