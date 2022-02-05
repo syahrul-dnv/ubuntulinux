@@ -14,4 +14,8 @@ Pasang Docker Repository
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null	</pre>
   
+Update kembali dan install docker-ce.
+
+<pre>sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io</pre>
   
