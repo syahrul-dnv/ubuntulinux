@@ -111,3 +111,12 @@ docker image inspect nginx
 ### Jika ingin menghapus image.
 <pre>docker rmi nginx</pre>
 
+## Docker container
+Setelah Docker image tersedia, kita sudah bisa membuat containter.
+
+Membuat dan menjalankan container dengan nama webserver dari nginx image.
+<pre>docker run -d -p 80:80 --name webserver nginx  </pre>
+Menampilkan container yang sedang berjalan.
+
+<pre>docker ps</pre>  
+Contoh hasil perintah di atas.
