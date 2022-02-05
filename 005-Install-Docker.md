@@ -96,3 +96,14 @@ Status: Downloaded newer image for nginx:latest
 docker.io/library/nginx:latest  
 </pre>
 
+Menampilkan semua image yang tersedia di local.
+<pre>docker image ls</pre>
+Contoh hasil perintah di atas.
+<pre>REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+nginx                      latest    08b152afcfae   3 weeks ago     133MB  
+</pre>
+
+Menampilkan informasi detail image nginx.
+<pre>docker inspect nginx
+docker image inspect nginx
+</pre>
