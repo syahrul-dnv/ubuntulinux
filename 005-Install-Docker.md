@@ -19,3 +19,11 @@ Update kembali dan install docker-ce.
 <pre>sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io</pre>
   
+Supaya dapat menjalankan docker tanpa sudo, buat group dengan nama docker dan masukkan user yang digunakan ke dalam group docker.
+<pre>sudo groupadd docker
+sudo usermod -aG docker $USER</pre>
+
+Logout dan login kembali.
+
+Uji coba menjalankan docker dan menampilkan versinya.
+<pre>docker version</pre>
