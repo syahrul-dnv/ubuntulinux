@@ -120,3 +120,26 @@ Menampilkan container yang sedang berjalan.
 
 <pre>docker ps</pre>  
 Contoh hasil perintah di atas.
+<pre>CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                               NAMES
+a92c311bd973   nginx     "/docker-entrypoint.…"   32 seconds ago   Up 29 seconds   0.0.0.0:80->80/tcp, :::80->80/tcp   webserver</pre>
+
+Pengujian nginx, akses ```http://127.0.0.1 atau http://localhost.```
+
+Masuk ke container (bash).
+<pre>docker exec -t -i webserver /bin/bash</pre>
+
+Menghentikan container webserver.
+<pre>docker stop webserver  </pre>
+
+Menjalankan kembali container webserver.
+<pre>docker start webserver  </pre>
+
+Menampilkan informasi detail container webserver.
+<pre>docker inspect webserver
+docker container inspect webserver</pre>
+
+Menghapus container webserver, container harus dihentikan terlebih dahulu.
+<pre>docker stop webserver
+docker rm webserver </pre> 
+
+
