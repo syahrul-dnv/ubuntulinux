@@ -49,3 +49,8 @@ Setelah Anda membuat pengguna stack , saatnya untuk masuk menggunakan perintah b
 
 <pre>sudo su - stack</pre>
 
+Langkah 3: Mengunduh Devstack
+Untuk langkah ini, kami menganggap Anda sudah menginstal git di sistem Anda. Sekarang, masukkan perintah ini untuk mengunduh/mengkloning devstack dari repositorinya ke sistem Anda:
+
+<pre>git clone https://opendev.org/openstack/</pre>
+Repo Devstack berisi skrip stack.sh , yang akan kita gunakan untuk menyiapkan OpenStack. Ini juga berisi template untuk file konfigurasi.
