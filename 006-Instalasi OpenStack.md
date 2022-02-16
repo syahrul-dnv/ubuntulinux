@@ -109,3 +109,14 @@ Setelah instalasi Anda berhasil selesai, terminal Anda akan terlihat seperti gam
 -----------
 
 Sekarang, kita dapat melihat bahwa dikatakan bahwa Horizon (Openstack Dashboard) tersedia di URL yang diberikan, itu akan bervariasi dari sistem ke sistem.
+
+### Langkah 6: Mengakses OpenStack menggunakan browser web
+Sekarang, karena kita telah berhasil mengatur OpenStack menggunakan Devstack, mari kita akses melalui browser kita.
+
+Jelajahi URL ini di browser Anda –
+
+<pre> https://server-ip/dashboard </pre>
+Atau coba
+<pre>https://localhost/dashboard</pre>
+
+Ini akan membuka halaman login OpenStack, seperti yang ditunjukkan di bawah ini.
