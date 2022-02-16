@@ -75,3 +75,11 @@ dan rekatkan konten berikut -
 6 SERVICE_PASSWORD=$ADMIN_PASSWORD
 
 ```
+
+Jika Anda tidak terlalu mengenal Vim, Anda dapat membaca tutorial vim . Untuk saat ini, Anda cukup menempelkan menggunakan mouse dengan mengklik kanan dan mengklik Tempel dan masuk :x untuk menyimpan & keluar.
+
+Di sini, saya menggunakan konfigurasi minimal untuk menyiapkan DevStack, Anda dapat menjelajahi
+
+Catatan:
+1. <b>StrongAdminSecret</b> adalah kata sandi yang kami gunakan di sini, Anda dapat mengubahnya dengan pilihan Anda.
+2. Anda dapat menemukan file konfigurasi sampel untu kb>local.conf</b> di direktori Samples di bawah repositori Devstack.
