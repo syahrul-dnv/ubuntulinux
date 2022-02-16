@@ -41,3 +41,9 @@ Buka terminal baru, dan jalankan perintah useradd :
 <pre>sudo useradd -s /bin/bash -d /opt/stack -m stack</pre>
 
 Anda juga perlu mengaktifkan pengguna tumpukan untuk memiliki hak akses root dan berjalan tanpa kata sandi, untuk menjalankan itu:
+
+<pre>echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
+Outputnya akan terlihat seperti ini -</pre>
+
+
+
