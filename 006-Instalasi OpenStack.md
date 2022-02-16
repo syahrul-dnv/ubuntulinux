@@ -54,3 +54,24 @@ Untuk langkah ini, kami menganggap Anda sudah menginstal git di sistem Anda. Sek
 
 <pre>git clone https://opendev.org/openstack/</pre>
 Repo Devstack berisi skrip stack.sh , yang akan kita gunakan untuk menyiapkan OpenStack. Ini juga berisi template untuk file konfigurasi.
+
+### Langkah 4: Membuat file konfigurasi (.conf) untuk Devstack
+Sekarang, kami telah mengunduh DevStack dan perlu mengatur file konfigurasi kami untuk itu.
+
+Anda harus terlebih dahulu menavigasi ke folder devstack, dengan menjalankan:
+
+<pre>cd devstack</pre>
+Setelah itu, buat file local.conf, dengan menjalankan:
+
+<pre>	
+vim local.conf</pre>
+dan rekatkan konten berikut -
+```
+1 [[local|localr]]
+2
+3 ADMIN_PASSWORD=StrongAdminSecret
+4 DATABASE_PASSWORD=$ADMIN_PASSWOCinder
+5 RABBIT_PASSWORD=$ADMIN_PASSWORD
+6 SERVICE_PASSWORD=$ADMIN_PASSWORD
+
+```
