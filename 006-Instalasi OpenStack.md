@@ -122,3 +122,5 @@ Atau coba
 Ini akan membuka halaman login OpenStack, seperti yang ditunjukkan di bawah ini.
 
 Sekarang, masukkan kredensial. Anda juga dapat masuk sebagai admin di sini, dengan memiliki Nama Pengguna sebagai admin & untuk Kata Sandi menggunakan yang kami tambahkan ke file <b>local.conf</b>.
+
+Setelah masuk, dasbor Anda akan terlihat seperti ini.
