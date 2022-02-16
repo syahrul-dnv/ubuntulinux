@@ -38,21 +38,22 @@ Sekarang, saatnya untuk memulai dengan langkah-langkah penting untuk menginstal 
 Kami pertama-tama akan membuat pengguna baru bernama stack untuk sistem kami untuk mengatur OpenStack, karena itu harus diinstal pada pengguna non-root dengan sudo diaktifkan.
 Buka terminal baru, dan jalankan perintah useradd :
 
-<pre>sudo useradd -s /bin/bash -d /opt/stack -m stack</pre>
+<pre>sudo useradd stack</pre>
+<pre>sudo -i</pre>
 
 Anda juga perlu mengaktifkan pengguna tumpukan untuk memiliki hak akses root dan berjalan tanpa kata sandi, untuk menjalankan itu:
 
-<pre>echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
+<pre>echo "stack ALL=(ALL) NOPASSWD: ALL">>/etc/sudoers.d/stack
 Outputnya akan terlihat seperti ini -</pre>
 
+exit< dan caoba login ke user stack
 Setelah Anda membuat pengguna stack , saatnya untuk masuk menggunakan perintah berikut:
 
-<pre>sudo su - stack</pre>
 
 ### Langkah 3: Mengunduh Devstack
 Untuk langkah ini, kami menganggap Anda sudah menginstal git di sistem Anda. Sekarang, masukkan perintah ini untuk mengunduh/mengkloning devstack dari repositorinya ke sistem Anda:
 
-<pre>git clone https://opendev.org/openstack/</pre>
+<pre>git clone https://opendev.org/openstack/devstack</pre>
 Repo Devstack berisi skrip stack.sh , yang akan kita gunakan untuk menyiapkan OpenStack. Ini juga berisi template untuk file konfigurasi.
 
 ### Langkah 4: Membuat file konfigurasi (.conf) untuk Devstack
