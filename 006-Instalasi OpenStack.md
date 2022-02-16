@@ -88,3 +88,20 @@ Catatan:
 Sekarang, karena kami telah mengatur file konfigurasi dengan benar.
 
 Mari kita jalankan skrip untuk mengatur OpenStack di sistem kita, menggunakan perintah berikut:
+<pre>./stack.sh</pre>
+(Skrip yang kami gunakan ini adalah bagian dari DevStack itu sendiri)
+
+Script akan menginstal fitur yang terdaftar untuk lingkungan OpenStack Anda –
+
+<ul>
+  <li>Horizon – Dasbor OpenStack</li>
+  <li>Keystone – Layanan Identitas</li>
+  <li>Nova – Layanan Komputasi</li>
+  <li>Sekilas – Layanan Gambar</li>
+  <li>Neutron – Layanan Jaringan</li>
+  <li>Penempatan – Penempatan API</li>
+  <li>Cinder – Layanan Penyimpanan Blok</li>
+</ul>
+Penyiapan akan memakan waktu sekitar 10 hingga 20 menit, berdasarkan kinerja sistem dan kecepatan internet Anda, karena banyak pohon git dan paket diinstal selama proses.
+
+Setelah instalasi Anda berhasil selesai, terminal Anda akan terlihat seperti gambar di bawah ini.
