@@ -24,3 +24,10 @@ Ada beberapa persyaratan perangkat lunak tambahan juga, yang harus Anda penuhi.
 
 ## Langkah-langkah untuk Menginstal Openstack di Ubuntu dengan Devstack
 Menginstal OpenStack di Ubuntu adalah proses yang agak rumit. Tapi itu dipermudah oleh Devstack. Langkah-langkah untuk menginstalnya, cukup mudah bahkan jika Anda tidak terlalu mahir dengan baris perintah, cukup ikuti langkah-langkahnya dan jalankan.
+
+### Langkah 1: Mempersiapkan sistem
+Sebelum kita memulai, kita perlu memastikan bahwa sistem kita diperbarui , untuk itu jalankan perintah berikut:
+
+<pre>sudo apt-get update && sudo apt-get upgrade -y</pre>
+
+Perintah akan meminta hak akses root . Masukkan kata sandi pengguna Anda dan tunggu hingga sistem Anda ditingkatkan. Setelah pemutakhiran selesai, pastikan untuk me- reboot sistem Anda . Ini akan menginisialisasi dan mengatur upgrade Anda di reboot berikutnya.
