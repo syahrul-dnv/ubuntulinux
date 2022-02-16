@@ -31,3 +31,13 @@ Sebelum kita memulai, kita perlu memastikan bahwa sistem kita diperbarui , untuk
 <pre>sudo apt-get update && sudo apt-get upgrade -y</pre>
 
 Perintah akan meminta hak akses root . Masukkan kata sandi pengguna Anda dan tunggu hingga sistem Anda ditingkatkan. Setelah pemutakhiran selesai, pastikan untuk me- reboot sistem Anda . Ini akan menginisialisasi dan mengatur upgrade Anda di reboot berikutnya.
+
+### Langkah 2: Membuat pengguna tumpukan dengan hak istimewa Sudo
+Sekarang, saatnya untuk memulai dengan langkah-langkah penting untuk menginstal Openstack di Ubuntu.
+
+Kami pertama-tama akan membuat pengguna baru bernama stack untuk sistem kami untuk mengatur OpenStack, karena itu harus diinstal pada pengguna non-root dengan sudo diaktifkan.
+Buka terminal baru, dan jalankan perintah useradd :
+
+<pre>sudo useradd -s /bin/bash -d /opt/stack -m stack</pre>
+
+Anda juga perlu mengaktifkan pengguna tumpukan untuk memiliki hak akses root dan berjalan tanpa kata sandi, untuk menjalankan itu:
