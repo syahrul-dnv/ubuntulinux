@@ -21,3 +21,6 @@ Ada beberapa persyaratan perangkat lunak tambahan juga, yang harus Anda penuhi.
 
 <li>Git</li>
 <li>Peramban web(chrome,firefox, dll)</li>
+
+## Langkah-langkah untuk Menginstal Openstack di Ubuntu dengan Devstack
+Menginstal OpenStack di Ubuntu adalah proses yang agak rumit. Tapi itu dipermudah oleh Devstack. Langkah-langkah untuk menginstalnya, cukup mudah bahkan jika Anda tidak terlalu mahir dengan baris perintah, cukup ikuti langkah-langkahnya dan jalankan.
