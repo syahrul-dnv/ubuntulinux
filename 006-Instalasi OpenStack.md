@@ -105,3 +105,7 @@ Script akan menginstal fitur yang terdaftar untuk lingkungan OpenStack Anda –
 Penyiapan akan memakan waktu sekitar 10 hingga 20 menit, berdasarkan kinerja sistem dan kecepatan internet Anda, karena banyak pohon git dan paket diinstal selama proses.
 
 Setelah instalasi Anda berhasil selesai, terminal Anda akan terlihat seperti gambar di bawah ini.
+
+-----------
+
+Sekarang, kita dapat melihat bahwa dikatakan bahwa Horizon (Openstack Dashboard) tersedia di URL yang diberikan, itu akan bervariasi dari sistem ke sistem.
