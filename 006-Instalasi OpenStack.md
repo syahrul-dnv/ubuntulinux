@@ -1,4 +1,4 @@
-# Cara Menginstal OpenStack di Ubuntu dengan DevStack [Metode mudah]
+# Cara Menginstal OpenStack di Ubuntu dengan DevStack
 
 OpenStack adalah infrastruktur komputasi awan (IaaS) yang membantu mengendalikan kumpulan besar daya komputasi, penyimpanan, dan sumber daya jaringan di seluruh pusat data. Ia melakukannya dengan bantuan API. Singkatnya, OpenStack membantu dalam membangun dan mengelola Cloud Publik dan Pribadi, dengan menggunakan sumber daya virtual yang dikumpulkan.
 
