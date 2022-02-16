@@ -45,5 +45,7 @@ Anda juga perlu mengaktifkan pengguna tumpukan untuk memiliki hak akses root dan
 <pre>echo "stack ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/stack
 Outputnya akan terlihat seperti ini -</pre>
 
+Setelah Anda membuat pengguna stack , saatnya untuk masuk menggunakan perintah berikut:
 
+<pre>sudo su - stack</pre>
 
